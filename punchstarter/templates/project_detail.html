@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Punchstarter
+{% endblock %}
+
+{% block content %}
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+	    <ul class="bg-success list-unstyled">
+	    {% for message in messages %}
+	      <li>{{ message }}</li>
+	    {% endfor %}
+	    </ul>
+	  {% endif %}
+	{% endwith %}	
+
+
+	<div class="row">
+		<div class="col-sm-8" style="border: 1px solid #F00">
+
+			<div class="panel">
+				<h1 class="text-center">{{ project.project_name }}</h1>
+				<div class="text-center"> by {{ project.creator.first_name }} {{ project.creator.last_name }}</div>
+			</div>
+						
+			<div class="panel">
+				<p class="text-center">{{ project.short_description }}</p>
+				<img class="img-responsive center-block" src="http://placehold.it/680x500">
+			</div>
+
+			<div class="panel">
+				<p class="text-center">{{ project.long_description }}</p>
+			</div>
+
+		</div>
+		<div class="col-sm-4" style="border: 1px solid #F00">Pledge Amount</div>
+	</div>
+
+{% endblock content %}
