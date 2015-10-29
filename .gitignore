@@ -1,1 +1,3 @@
 *.pyc
+punchstarter/static/uploads/*
+punchstarter/app.db

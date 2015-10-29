@@ -3,20 +3,17 @@ body {
   padding-bottom: 30px;
 }
 
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
+.project-vitals {
+	font-size: 2em;
 }
 
-.theme-showcase > p > .btn {
-  margin: 5px 0;
+.search-card {
+	padding:15px;
+	border:1px solid #000; 
+	height:415px;
+	margin-bottom:40px;
 }
 
-.theme-showcase .navbar .container {
-  width: auto;
-}
-
-.navbar {
-	background-color: orange;
+.search-description {
+  height:350px;
 }

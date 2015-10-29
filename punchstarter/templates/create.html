@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% set active_page = "create" %}
 
-{% block title %}
-    Punchstarter | Create Project
+{% block subtitle %}
+    Start a Project
 {% endblock %}
 
 {% block content %}
@@ -17,10 +18,10 @@
 
 
   <div>
-    <h1 class="text-center"> Create a Project </h1>
+    <h1 class="text-center"> Start a Project </h1>
   </div>
 
-  <form class="form-horizontal" method="POST" action="{{ url_for('create') }}">
+  <form class="form-horizontal" method="POST" action="{{ url_for('create') }}" enctype="multipart/form-data">
     <div class="form-group">
       <label for="project_name" class="col-sm-2 control-label">Project Name</label>
       <div class="col-sm-10">
@@ -39,6 +40,12 @@
         <textarea class="form-control" id="long_description" name="long_description" rows="15"></textarea>
       </div>
     </div>
+    <div class="form-group">
+      <label for="cover_image" class="col-sm-2 control-label">Cover Photo</label>
+      <div class="col-sm-3">
+        <input type="file" class="form-control" id="cover_image" name="cover_image">
+      </div>
+    </div>    
     <div class="form-group">
       <label for="funding_goal" class="col-sm-2 control-label">Funding Goal ($)</label>
       <div class="col-sm-2">

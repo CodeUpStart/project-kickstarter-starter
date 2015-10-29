@@ -1,4 +1,6 @@
-from punchstarter import db
+from punchstarter import db, app
+from sqlalchemy.sql import func
+import datetime
 
 class Member(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -14,10 +16,38 @@ class Project(db.Model):
 	short_description = db.Column(db.Text, nullable=False)
 	long_description = db.Column(db.Text, nullable=False)
 	goal_amount = db.Column(db.Integer, nullable=False)
+	image_filename = db.Column(db.String(128), nullable=False)
 	time_created = db.Column(db.DateTime(timezone=True), nullable=False)
 	time_start = db.Column(db.DateTime(timezone=True), nullable=False)
 	time_end = db.Column(db.DateTime(timezone=True), nullable=False)
 	pledges = db.relationship('Pledge', backref='project', lazy='dynamic', foreign_keys='Pledge.project_id')
+
+	@property
+	def total_pledged(self):
+		total_pledged = db.session.query(func.sum(Pledge.amount)).filter(Pledge.project_id==self.id).one()[0]
+		if total_pledged is None:
+			total_pledged = 0
+
+		return total_pledged
+
+	@property
+	def num_pledges(self):
+		return self.pledges.count()
+
+	@property
+	def num_days_left(self):
+		now = datetime.datetime.now()
+		num_days_left = (self.time_end - now).days
+
+		return num_days_left
+
+	@property
+	def percentage_funded(self):
+		return int(self.total_pledged  * 100 / self.goal_amount)
+
+	@property
+	def image_path(self):
+	    return app.config["UPLOAD_PATH"] + "/" + self.image_filename
 
 class Pledge(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

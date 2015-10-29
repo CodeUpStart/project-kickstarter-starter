@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% set active_page = "project_detail" %}
 
-{% block title %}
-    Punchstarter
+{% block subtitle %}
+    {{ project.project_name }}
 {% endblock %}
 
 {% block content %}
@@ -15,18 +16,23 @@
 	  {% endif %}
 	{% endwith %}	
 
-
 	<div class="row">
-		<div class="col-sm-8" style="border: 1px solid #F00">
-
+		<div class="col-sm-12" style="border: 0px solid #F00">
 			<div class="panel">
 				<h1 class="text-center">{{ project.project_name }}</h1>
 				<div class="text-center"> by {{ project.creator.first_name }} {{ project.creator.last_name }}</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-12" style="height:30px;"></div>
+
+	<div class="row">
+		<div class="col-sm-8" style="border: 0px solid #F00">
 						
 			<div class="panel">
 				<p class="text-center">{{ project.short_description }}</p>
-				<img class="img-responsive center-block" src="http://placehold.it/680x500">
+				<img class="img-responsive center-block" src="{{ project.image_path }}" width="680" height="500">
 			</div>
 
 			<div class="panel">
@@ -34,7 +40,25 @@
 			</div>
 
 		</div>
-		<div class="col-sm-4" style="border: 1px solid #F00">Pledge Amount</div>
+		<div class="col-sm-4" style="border: 0px solid #F00">
+
+			<div class="panel">
+				<span class="project-vitals">{{ project.num_pledges }}</span> pledges
+			</div>
+
+			<div class="panel">
+				<span class="project-vitals"> ${{ project.total_pledged }} </span> <br/>pledged of ${{ project.goal_amount }} goal
+			</div>
+
+			<div class="panel">
+				<span class="project-vitals"> {{ project.num_days_left }} </span>days left 
+			</div>
+
+			<div class="panel">
+				<a href="{{ url_for('pledge', project_id=project.id) }}" class="btn btn-primary">Pledge Now</a>
+			</div>
+
+		</div>
 	</div>
 
 {% endblock content %}
