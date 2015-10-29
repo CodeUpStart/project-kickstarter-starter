@@ -1,6 +1,6 @@
 body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+  	padding-top: 70px;
+  	padding-bottom: 30px;
 }
 
 .project-vitals {
@@ -15,5 +15,9 @@ body {
 }
 
 .search-description {
-  height:350px;
+  	height:350px;
+}
+
+.search-thumbnail {
+	height:200px;
 }

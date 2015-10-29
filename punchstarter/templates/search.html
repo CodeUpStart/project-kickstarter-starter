@@ -22,7 +22,7 @@
 	  		<div class="col-sm-3">
 	  			<div class="search-card">
 	  				<div class="search-description">
-			  			<a href="{{ url_for('project_detail', project_id=project.id) }}"><img class="img-responsive center-block" src="{{ project.image_path }}" width="273" height="200"></a>
+			  			<a href="{{ url_for('project_detail', project_id=project.id) }}"><img class="img-responsive center-block search-thumbnail" src="{{ project.image_path }}"></a>
 			  			</br/>
 			  			<strong><a href="{{ url_for('project_detail', project_id=project.id) }}">{{ project.project_name }}</a></strong>
 			  			</br/>
