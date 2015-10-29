@@ -17,9 +17,9 @@ class Project(db.Model):
 	long_description = db.Column(db.Text, nullable=False)
 	goal_amount = db.Column(db.Integer, nullable=False)
 	image_filename = db.Column(db.String(128), nullable=False)
-	time_created = db.Column(db.DateTime(timezone=True), nullable=False)
-	time_start = db.Column(db.DateTime(timezone=True), nullable=False)
-	time_end = db.Column(db.DateTime(timezone=True), nullable=False)
+	time_created = db.Column(db.DateTime(timezone=False), nullable=False)
+	time_start = db.Column(db.DateTime(timezone=False), nullable=False)
+	time_end = db.Column(db.DateTime(timezone=False), nullable=False)
 	pledges = db.relationship('Pledge', backref='project', lazy='dynamic', foreign_keys='Pledge.project_id')
 
 	@property
@@ -54,4 +54,4 @@ class Pledge(db.Model):
 	member_id = db.Column(db.Integer, db.ForeignKey('member.id'), nullable=False)
 	project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
 	amount = db.Column(db.Integer, nullable=False)
-	time_created = db.Column(db.DateTime(timezone=True), nullable=False)
+	time_created = db.Column(db.DateTime(timezone=False), nullable=False)
