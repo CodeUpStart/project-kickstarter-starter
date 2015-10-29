@@ -2,9 +2,9 @@ from punchstarter import app, db
 from punchstarter.util import allowed_file
 from punchstarter.models import Member, Project, Pledge
 from flask import render_template, redirect, request, flash, url_for, abort
-from werkzeug import secure_filename
 import datetime
 import os
+import cloudinary.uploader
 
 
 @app.route('/')
@@ -22,10 +22,17 @@ def create():
 		# Upload cover image
 		cover_image = request.files['cover_image']
 		if cover_image and allowed_file(cover_image.filename):
-			image_filename = secure_filename(cover_image.filename)
-			cover_image.save(os.path.join(app.config['UPLOAD_FOLDER'], image_filename))
+			uploaded_image = cloudinary.uploader.upload(
+				cover_image,
+				crop = 'limit',
+				width = 680,
+				height = 550,
+			)
+			image_filename = uploaded_image["public_id"]
 		else:
-			image_filename = "placeholder.jpg"
+			flash("Invalid cover photo file")
+			return redirect(url_for('create'))
+
 
 		if request.form.get("funding_end_date"):
 			time_end = datetime.datetime.strptime(request.form.get("funding_end_date"), "%Y-%m-%d")
