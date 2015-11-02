@@ -21,3 +21,23 @@ body {
 .search-thumbnail {
 	height:200px;
 }
+
+.btn-punchstarter {
+	background-color:#2bde73;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.btn-punchstarter:hover {
+	background-color:#19b858;
+	color:#FFF;
+}
+
+/* Bootstrap Overrides */
+.navbar-default .navbar-brand { 
+	color:#2bde73;
+	font-weight: bold;
+}
+a {color:#2bde73;}
+a:hover {color:#19b858; text-decoration: none;}
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {color:#19b858;}

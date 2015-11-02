@@ -13,5 +13,43 @@
         <p>Punchstarter is a simple crowdfunding platform to help make dreams come true!</p>
       </div>
 
+      <h2>New Projects</h2>
+	  <div>
+	  	{% for project in projects %}
 
+	  	{% if loop.index % 3 == 1 %}
+	  	<div class="row">
+
+	  	{% endif %}
+
+	  		<div class="col-sm-3">
+	  			<div class="search-card">
+	  				<div class="search-description">
+			  			<a href="{{ url_for('project_detail', project_id=project.id) }}"><img class="img-responsive center-block search-thumbnail" src="{{ project.image_path }}"></a>
+			  			</br/>
+			  			<strong><a href="{{ url_for('project_detail', project_id=project.id) }}">{{ project.project_name }}</a></strong>
+			  			</br/>
+			  			{{ project.short_description|truncate(200,False) }}
+		  			</div>
+
+			  		<div class="search-summary">
+			  			<div class="row">
+			  				<div class="col-sm-4 text-center">{{ project.percentage_funded }}% <br/> funded </div>
+			  				<div class="col-sm-4 text-center">${{ project.total_pledged }} <br/> pledged </div>
+			  				<div class="col-sm-4 text-center">{{ project.num_days_left }} <br/> days left</div>
+			  			</div>		  		
+			  		</div>
+		  		</div>
+	  		</div>
+	  		<div class="col-sm-1"></div>
+
+	  	{% if loop.index % 3 == 0 %}
+
+
+	  	</div>
+	  	{% endif %}
+
+	  	{% endfor %}
+	  	
+	  </div>
 {% endblock content %} 

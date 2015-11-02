@@ -9,7 +9,9 @@ import cloudinary.uploader
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	projects = db.session.query(Project).order_by(Project.time_created.desc()).limit(10)
+
+	return render_template('index.html', projects=projects)
 
 @app.route('/projects/create/', methods=['GET', 'POST'])
 def create():
@@ -119,7 +121,11 @@ def pledge(project_id):
 @app.route('/search/')
 def search():
 	query = request.args.get("q") or ""
-	projects = db.session.query(Project).filter(Project.project_name.like('%'+query+'%')).all()
+	projects = db.session.query(Project).filter(
+		Project.project_name.ilike('%'+query+'%') |
+		Project.short_description.ilike('%'+query+'%') |
+		Project.long_description.ilike('%'+query+'%')
+	).all()
 	project_count = len(projects)
 
 	query_text = query if query != "" else "all projects"
