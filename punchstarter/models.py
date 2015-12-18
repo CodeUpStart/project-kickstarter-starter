@@ -24,12 +24,12 @@ class Project(db.Model):
 	pledges = db.relationship('Pledge', backref='project', lazy='dynamic', foreign_keys='Pledge.project_id')
 
 	@property
-	def total_pledged(self):
-		total_pledged = db.session.query(func.sum(Pledge.amount)).filter(Pledge.project_id==self.id).one()[0]
-		if total_pledged is None:
-			total_pledged = 0
+	def total_pledges(self):
+		total_pledges = db.session.query(func.sum(Pledge.amount)).filter(Pledge.project_id==self.id).one()[0]
+		if total_pledges is None:
+			total_pledges = 0
 
-		return total_pledged
+		return total_pledges
 
 	@property
 	def num_pledges(self):
@@ -44,7 +44,7 @@ class Project(db.Model):
 
 	@property
 	def percentage_funded(self):
-		return int(self.total_pledged  * 100 / self.goal_amount)
+		return int(self.total_pledges  * 100 / self.goal_amount)
 
 	@property
 	def image_path(self):
