@@ -13,7 +13,7 @@ class Member(db.Model):
 class Project(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	member_id = db.Column(db.Integer, db.ForeignKey('member.id'), nullable=False)
-	project_name = db.Column(db.String(64), nullable=False)
+	name = db.Column(db.String(64), nullable=False)
 	short_description = db.Column(db.Text, nullable=False)
 	long_description = db.Column(db.Text, nullable=False)
 	goal_amount = db.Column(db.Integer, nullable=False)

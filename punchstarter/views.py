@@ -45,7 +45,7 @@ def create():
 
 		new_project = Project(
 			member_id = guest_creator.id,
-			project_name = request.form.get("project_name"),
+			name = request.form.get("project_name"),
 			short_description = request.form.get("short_description"),
 			long_description = request.form.get("long_description"),
 			goal_amount = goal_amount,
@@ -101,7 +101,7 @@ def pledge(project_id):
 			time_created = now,
 		)
 		db.session.add(new_pledge)
-		message = "You have successfully pledged $%s to %s!" % (amount, project.project_name)
+		message = "You have successfully pledged $%s to %s!" % (amount, project.name)
 		try:
 			db.session.commit()
 		except Exception, e:
@@ -122,7 +122,7 @@ def pledge(project_id):
 def search():
 	query = request.args.get("q") or ""
 	projects = db.session.query(Project).filter(
-		Project.project_name.ilike('%'+query+'%') |
+		Project.name.ilike('%'+query+'%') |
 		Project.short_description.ilike('%'+query+'%') |
 		Project.long_description.ilike('%'+query+'%')
 	).all()

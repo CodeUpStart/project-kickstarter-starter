@@ -2,7 +2,7 @@
 {% set active_page = "project_detail" %}
 
 {% block subtitle %}
-    {{ project.project_name }}
+    {{ project.name }}
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col-sm-12" style="border: 0px solid #F00">
 			<div class="panel">
-				<h1 class="text-center">{{ project.project_name }}</h1>
+				<h1 class="text-center">{{ project.name }}</h1>
 				<div class="text-center"> by {{ project.creator.first_name }} {{ project.creator.last_name }}</div>
 			</div>
 		</div>

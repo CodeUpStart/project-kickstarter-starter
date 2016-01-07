@@ -33,7 +33,7 @@ def upgrade():
     op.create_table('project',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('member_id', sa.Integer(), nullable=False),
-    sa.Column('project_name', sa.String(length=64), nullable=False),
+    sa.Column('name', sa.String(length=64), nullable=False),
     sa.Column('short_description', sa.Text(), nullable=False),
     sa.Column('long_description', sa.Text(), nullable=False),
     sa.Column('goal_amount', sa.Integer(), nullable=False),
