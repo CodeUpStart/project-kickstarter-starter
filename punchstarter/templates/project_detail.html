@@ -6,15 +6,6 @@
 {% endblock %}
 
 {% block content %}
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-	    <ul class="bg-success list-unstyled">
-	    {% for message in messages %}
-	      <li>{{ message }}</li>
-	    {% endfor %}
-	    </ul>
-	  {% endif %}
-	{% endwith %}	
 
 	<div class="row">
 		<div class="col-sm-12" style="border: 0px solid #F00">

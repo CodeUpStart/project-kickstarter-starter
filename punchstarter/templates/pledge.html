@@ -6,16 +6,6 @@
 {% endblock %}
 
 {% block content %}
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class="bg-warning list-unstyled">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-
 
   <div>
     <h1 class="text-center"> Pledge to {{  project.name }} </h1>

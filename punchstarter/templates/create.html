@@ -6,16 +6,6 @@
 {% endblock %}
 
 {% block content %}
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class="bg-warning list-unstyled">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-
 
   <div>
     <h1 class="text-center"> Create a Project </h1>
@@ -41,9 +31,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="cover_image" class="col-sm-2 control-label">Cover Photo</label>
+      <label for="cover_photo" class="col-sm-2 control-label">Cover Photo</label>
       <div class="col-sm-3">
-        <input type="file" class="form-control" id="cover_image" name="cover_image">
+        <input type="file" class="form-control" id="cover_photo" name="cover_photo">
       </div>
     </div>    
     <div class="form-group">
